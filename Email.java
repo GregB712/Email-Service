@@ -12,12 +12,12 @@ public class Email {
     private String mainbody; //Main Body of the e-mail.
 
     //Constructor of the class Email.
-    Email(String sender, String receiver, String subject, String mainbody, String uniqueID){
+    Email(String sender, String receiver, String subject, String mainbody){
         this.sender = sender;
         this.receiver = receiver;
         this.subject = subject;
         this.mainbody = mainbody;
-        this.uniqueID = uniqueID;
+        //this.uniqueID = uniqueID;
         isNew = true;
     }
 

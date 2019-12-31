@@ -47,25 +47,24 @@ public class Account {
     }
 
     //Delete an e-mail from mailbox.
-    public void deleteEmail(String idEmail){
+    public boolean deleteEmail(String idEmail){
         for (Email email: mailbox) {
             if (email.getUniqueID().equals(idEmail)) {
                 mailbox.remove(email);
-                System.out.println("E-mail Successfully Deleted");
-                return;
+                return true;
             }
         }
-        System.out.println("ERROR: EMAIL DOES NOT EXIST");
+        return false;
     }
 
     //Mark an e-mail as read.
-    public void readEmail(String idEmail){
+    public Email readEmail(String idEmail){
         for (Email email: mailbox) {
             if (email.getUniqueID().equals(idEmail)) {
                 email.setisNew(false);
-                return;
+                return email;
             }
         }
-        System.out.println("ERROR: EMAIL DOES NOT EXIST");
+        return null;
     }
 }
