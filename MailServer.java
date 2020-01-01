@@ -1,5 +1,3 @@
-package com.company;
-
 // Java implementation of Server side
 // It contains two classes : Server and ClientHandler
 
@@ -15,7 +13,8 @@ public class MailServer {
         // server is listening on port 5056
         ServerSocket ss = new ServerSocket(5056);
         Map<String, Account> accountMap = new HashMap<>();
-        accountMap.put("greg", new Account("Greg", "0000"));
+        accountMap.put("greg", new Account("greg", "0000"));
+        accountMap.put("12mplu", new Account("12mplu", "12mplu"));
         // running infinite loop for getting
         // client request
         while (true) {
@@ -100,14 +99,14 @@ class ClientHandler extends Thread
                 received = dis.readUTF();
                 System.out.println("--------------------------------"+received);
 
-                if (received.equals("exit")) {
+                if (received.equals("Exit")) {
                     System.out.println("Client " + this.s + " sends exit...");
                     System.out.println("Closing this connection.");
                     this.s.close();
                     System.out.println("Connection closed");
                     break;
                 }
-                else if ((received.equals("login"))){
+                else if ((received.equals("LogIn"))){
                     while(check){
                         toReturn = (header +
                                 "Type your username:");
@@ -128,9 +127,8 @@ class ClientHandler extends Thread
                         dos.writeBoolean(check);
                     }
                     loginMenu(username);
-                    break;
                 }
-                else if (received.equals("signin")){
+                else if (received.equals("SignIn")){
                     do{
                         check = true;
                         toReturn = (header +
@@ -146,10 +144,8 @@ class ClientHandler extends Thread
                     dos.writeUTF(toReturn);
                     String password = dis.readUTF();
                     accountMap.put(username, new Account(username, password));
-                    break;
                 } else {
                     dos.writeUTF("Invalid input");
-                    break;
                 }
 
             } catch (IOException e) {
@@ -188,24 +184,24 @@ class ClientHandler extends Thread
             received = dis.readUTF();
             System.out.println("--------------------------------" + received);
 
-            if (received.equals("newemail")){
+            if (received.equals("NewEmail")){
                 newEmail(username);
             }
-            else if (received.equals("showemails")){
+            else if (received.equals("ShowEmails")){
                 showEmails(username);
             }
-            else if (received.equals("reademail")){
+            else if (received.equals("ReadEmail")){
                 dos.writeUTF("Give Email ID: ");
                 readEmail(username, dis.readUTF());
             }
-            else if (received.equals("deleteemail")){
+            else if (received.equals("DeleteEmail")){
                 dos.writeUTF("Give Email ID: ");
                 deleteEmail(username, dis.readUTF());
             }
-            else if (received.equals("logout")) {
+            else if (received.equals("LogOut")) {
                 break;
             }
-            else if (received.equals("exit")) {
+            else if (received.equals("Exit")) {
                 exitStatus = true;
                 break;
             }

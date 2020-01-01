@@ -1,5 +1,3 @@
-package com.company;
-
 // Java implementation for a client
 
 import java.io.*;
@@ -39,21 +37,21 @@ public class MailClient {
                     break;
                 }
                 System.out.println(dis.readUTF());
-                String toSend = scanner.nextLine().toLowerCase();
+                String toSend = scanner.nextLine();
                 dos.writeUTF(toSend);
 
                 // If client sends exit,close this connection
                 // and then break from the while loop
-                if(toSend.equals("exit")) {
+                if(toSend.equals("Exit")) {
                     System.out.println("Closing this connection : " + s);
                     s.close();
                     System.out.println("Connection closed");
                     break;
                 }
-                else if(toSend.equals("login")) {
+                else if(toSend.equals("LogIn")) {
                     do{
                         System.out.println(dis.readUTF());
-                        toSend = scanner.nextLine().toLowerCase();
+                        toSend = scanner.nextLine();
                         dos.writeUTF(toSend);
                         check = dis.readBoolean();
                         if(check)
@@ -62,7 +60,7 @@ public class MailClient {
 
                     do{
                         System.out.println(dis.readUTF());
-                        toSend = scanner.nextLine().toLowerCase();
+                        toSend = scanner.nextLine();
                         dos.writeUTF(toSend);
                         check = dis.readBoolean();
                         if(check)
@@ -70,17 +68,17 @@ public class MailClient {
                     }while(check);
                     loginMenu();
                 }
-                else if(toSend.equals("signin")) {
+                else if(toSend.equals("SignIn")) {
                     do{
                         System.out.println(dis.readUTF());
-                        toSend = scanner.nextLine().toLowerCase();
+                        toSend = scanner.nextLine();
                         dos.writeUTF(toSend);
                         check = dis.readBoolean();
                         if(!check)
                             System.out.println("Username already exists.\nTry another one.");
                     }while(!check);
                     System.out.println(dis.readUTF());
-                    toSend = scanner.nextLine().toLowerCase();
+                    toSend = scanner.nextLine();
                     dos.writeUTF(toSend);
                     System.out.println("Account Created");
                 }
@@ -102,32 +100,32 @@ public class MailClient {
     private static void loginMenu() throws IOException{
         while (true) {
             System.out.println(dis.readUTF());
-            String toSend = scanner.nextLine().toLowerCase();
+            String toSend = scanner.nextLine();
             dos.writeUTF(toSend);
 
-            if (toSend.equals("newemail")){
+            if (toSend.equals("NewEmail")){
                 newEmail();
             }
-            else if (toSend.equals("showemal")){
+            else if (toSend.equals("ShowEmails")){
                 showEmails();
             }
-            else if (toSend.equals("reademail")){
+            else if (toSend.equals("ReadEmail")){
                 System.out.println(dis.readUTF());
-                String id = scanner.nextLine().toLowerCase();
+                String id = scanner.nextLine();
                 dos.writeUTF(id);
                 readEmail();
             }
-            else if (toSend.equals("deleteemail")){
+            else if (toSend.equals("DeleteEmail")){
                 System.out.println(dis.readUTF());
-                String id = scanner.nextLine().toLowerCase();
+                String id = scanner.nextLine();
                 dos.writeUTF(id);
                 System.out.println(dis.readUTF());
             }
-            else if (toSend.equals("logout")){
+            else if (toSend.equals("LogOut")){
                 System.out.println("-----GoodBye-----\n");
                 break;
             }
-            else if (toSend.equals("exit")) {
+            else if (toSend.equals("Exit")) {
                 exitStatus = true;
                 break;
             }
@@ -139,14 +137,14 @@ public class MailClient {
 
     private static void newEmail() throws IOException {
         System.out.println(dis.readUTF());
-        String receiver = scanner.nextLine().toLowerCase();
+        String receiver = scanner.nextLine();
         dos.writeUTF(receiver);
         if (dis.readBoolean()){
             System.out.println(dis.readUTF());
-            String subject = scanner.nextLine().toLowerCase();
+            String subject = scanner.nextLine();
             dos.writeUTF(subject);
             System.out.println(dis.readUTF());
-            String mainBody = scanner.nextLine().toLowerCase();
+            String mainBody = scanner.nextLine();
             dos.writeUTF(mainBody);
             System.out.println(dis.readUTF());
         } else {
@@ -166,3 +164,4 @@ public class MailClient {
         System.out.println(dis.readUTF());
     }
 }
+
