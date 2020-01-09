@@ -1,4 +1,3 @@
-package com.company;
 /**
  * The objects of the class represents emails.
  */

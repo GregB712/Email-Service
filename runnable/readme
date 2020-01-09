@@ -1,0 +1,15 @@
+There are 2 account in this server.
+
+First
+Username : docotr
+Password : tardis
+
+Second
+Username : clara
+Password : rycbar
+
+Script for running the project :
+-go to the folder runnable through terminal (open 2 or more terminals)
+java MailServer (to the first one)
+java MailClient (to the others)
+

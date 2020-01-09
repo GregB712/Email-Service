@@ -1,5 +1,3 @@
-package com.company;
-
 import java.util.*;
 
 /**
@@ -44,6 +42,9 @@ public class Account {
     //Add e-mail to mailbox.
     public void addEmail(Email email){
         mailbox.add(email);
+        for (int i=0; i<mailbox.size(); i++){
+            mailbox.get(i).setUniqueID(Integer.toString(i+1));
+        }
     }
 
     //Delete an e-mail from mailbox.
