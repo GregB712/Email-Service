@@ -137,7 +137,6 @@ public class MailClient {
             if (toSend.equals("NewEmail")){
                 clearScreen();
                 newEmail();
-                clearScreen();
             }
             else if (toSend.equals("ShowEmails")){
                 clearScreen();
@@ -186,6 +185,7 @@ public class MailClient {
             dos.writeUTF(mainBody);
             System.out.println("==========\nMessage Sent");
         } else {
+	    clearScreen();
             System.out.println("ERROR: RECEIVER ACCOUNT DOESN'T EXIST");
         }
     }
