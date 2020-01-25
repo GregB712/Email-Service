@@ -10,6 +10,6 @@ Password : song
 
 Script for running the project :
 -go to the folder runnable through terminal (open 2 or more terminals)
-java -jar MailServer.jar (to the first one)
-java -jar MailClient.jar [port_number] (to the others etc. java -jar MailClient.jar 15437)
+java -jar MailServer.jar [localport](to the first one etc. java -jar MailServer.jar 5056)
+java -jar MailClient.jar 127 0 0 1 [localport] (to the others etc. java -jar MailClient.jar 127 0 0 1 5056)
 

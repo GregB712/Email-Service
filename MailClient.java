@@ -35,10 +35,13 @@ public class MailClient {
             scanner = new Scanner(System.in);
 
             // getting localhost ip
-            InetAddress ip = InetAddress.getByName("localhost");
+            // InetAddress ip = InetAddress.getByName("localhost");
+            byte[] ipAddr = new byte[] {Byte.parseByte(args[0]), Byte.parseByte(args[1]),
+                    Byte.parseByte(args[2]), Byte.parseByte(args[3])};
+            InetAddress ip = InetAddress.getByAddress(ipAddr);
 
             // establish the connection with server port 5056
-            Socket s = new Socket(ip, 5056, ip, Integer.parseInt(args[0]));
+            Socket s = new Socket(ip, Integer.parseInt(args[4]));
 
             // obtaining input and out streams
             dis = new DataInputStream(s.getInputStream());

@@ -17,7 +17,7 @@ public class MailServer {
     public static void main(String[] args) throws IOException {
         // server is listening on port 5056
         System.out.println("[Server Running]...");
-        ServerSocket ss = new ServerSocket(5056);
+        ServerSocket ss = new ServerSocket(Integer.parseInt(args[0]));
         accountMap = new HashMap<>();
         addAccounts(username1, password1, username2);
         addAccounts(username2, password2, username1);
