@@ -9,10 +9,10 @@ import java.util.Map;
 public class MailServer {
 
     private static Map<String, Account> accountMap;
-    private static final String username1 = "doctor";
-    private static final String password1 = "tardis";
-    private static final String username2 = "clara";
-    private static final String password2 = "rycbar";
+    private static final String username1 = "amy";
+    private static final String password1 = "river";
+    private static final String username2 = "rory";
+    private static final String password2 = "song";
 
     public static void main(String[] args) throws IOException {
         // server is listening on port 5056
@@ -54,9 +54,9 @@ public class MailServer {
 
     private static void addAccounts(String sender, String password, String receiver){
         accountMap.put(sender, new Account(sender, password));
-        accountMap.get(sender).addEmail(new Email(sender, receiver, "subject", "mainBody"));
-        accountMap.get(sender).addEmail(new Email(sender, receiver, "subject", "mainBody"));
-        accountMap.get(sender).addEmail(new Email(sender, receiver, "subject", "mainBody"));
+        accountMap.get(sender).addEmail(new Email(receiver, sender, "subject", "mainBody"));
+        accountMap.get(sender).addEmail(new Email(receiver, sender, "subject", "mainBody"));
+        accountMap.get(sender).addEmail(new Email(receiver, sender, "subject", "mainBody"));
 
     }
 }

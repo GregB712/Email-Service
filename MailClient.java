@@ -38,19 +38,17 @@ public class MailClient {
             InetAddress ip = InetAddress.getByName("localhost");
 
             // establish the connection with server port 5056
-            Socket s = new Socket(ip, 5056);
+            Socket s = new Socket(ip, 5056, ip, Integer.parseInt(args[0]));
 
             // obtaining input and out streams
             dis = new DataInputStream(s.getInputStream());
             dos = new DataOutputStream(s.getOutputStream());
 
-            clearScreen();
             // the following loop performs the exchange of
             // information between client and client handler
             while (true) {
                 String username = "";
                 if(exitStatus){ // Helps the case of exit condition inside loginMenu
-                    clearScreen();
                     System.out.println("Closing this connection : " + s);
                     s.close();
                     System.out.println("Connection closed");
@@ -63,7 +61,6 @@ public class MailClient {
                 // If client sends exit,close this connection
                 // and then break from the while loop
                 if(toSend.equals("Exit")) {
-                    clearScreen();
                     System.out.println("Closing this connection : " + s);
                     s.close();
                     System.out.println("Connection closed");
@@ -80,15 +77,12 @@ public class MailClient {
                         toSend = scanner.nextLine();
                         dos.writeUTF(toSend);
                         if(dis.readBoolean()) {
-                            clearScreen();
                             System.out.println(header + "Welcome Back " + username);
                             loginMenu(username);
                         }else{
-                            clearScreen();
                             System.out.println("Password doesn't match.");
                         }
                     } else{
-                        clearScreen();
                         System.out.println("Username doesn't exist.");}
 
                 }
@@ -102,18 +96,15 @@ public class MailClient {
                                 "Type your password:");
                         toSend = scanner.nextLine();
                         dos.writeUTF(toSend);
-                        clearScreen();
                         System.out.println("Account Created");
                         System.out.println(header + "Welcome " + username +
                                 "\nGLAD TO HAVE YOU!");
                         loginMenu(username);
                     } else {
-                        clearScreen();
                         System.out.println("Username already exists.");
                     }
                 }
                 else {
-                    clearScreen();
                     System.out.println("Invalid input");
                 }
             }
@@ -135,29 +126,24 @@ public class MailClient {
             dos.writeUTF(toSend);
 
             if (toSend.equals("NewEmail")){
-                clearScreen();
                 newEmail();
             }
             else if (toSend.equals("ShowEmails")){
-                clearScreen();
                 showEmails();
             }
             else if (toSend.equals("ReadEmail")){
                 System.out.println("Give Email ID: ");
                 String id = scanner.nextLine();
                 dos.writeUTF(id);
-                clearScreen();
                 readEmail();
             }
             else if (toSend.equals("DeleteEmail")){
                 System.out.println("Give Email ID: ");
                 String id = scanner.nextLine();
                 dos.writeUTF(id);
-                clearScreen();
                 System.out.println(dis.readUTF());
             }
             else if (toSend.equals("LogOut")){
-                clearScreen();
                 System.out.println("-----GoodBye-----\n");
                 break;
             }
@@ -166,7 +152,6 @@ public class MailClient {
                 break;
             }
             else {
-                clearScreen();
                 System.out.println("Invalid Input");
             }
         }
@@ -185,7 +170,6 @@ public class MailClient {
             dos.writeUTF(mainBody);
             System.out.println("==========\nMessage Sent");
         } else {
-	    clearScreen();
             System.out.println("ERROR: RECEIVER ACCOUNT DOESN'T EXIST");
         }
     }
@@ -202,8 +186,4 @@ public class MailClient {
         System.out.println(dis.readUTF());
     }
 
-    private static void clearScreen() {
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
-    }
 }

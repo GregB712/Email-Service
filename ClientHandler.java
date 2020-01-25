@@ -47,9 +47,6 @@ public class ClientHandler extends Thread
                 }
                 String username = "";
 
-                // Ask user what he wants
-                //dos.writeUTF(intro);
-
                 // receive the answer from client
                 received = dis.readUTF();
                 System.out.println("--------------------------------"+received);
@@ -71,7 +68,8 @@ public class ClientHandler extends Thread
                             loginMenu(username);
                         }
                     }
-                    dos.writeBoolean(false);
+                    else
+                        dos.writeBoolean(false);
                 }
                 else if (received.equals("SignIn")){
                     username = dis.readUTF();
